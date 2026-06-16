@@ -1,0 +1,880 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tern Setup Guide — Adventure the World Travels</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+
+  :root {
+    --navy:       #2B3A52;
+    --teal:       #0F6E56;
+    --teal-mid:   #1D9E75;
+    --teal-light: #D6F0E8;
+    --sky:        #E8F4FA;
+    --gold:       #C8A84B;
+    --gold-light: #F5EDD5;
+    --orange:     #C45E0A;
+    --orange-lt:  #FDF0E6;
+    --red:        #8B1A1A;
+    --red-lt:     #F8E8E8;
+    --gray:       #7A7A7A;
+    --gray-lt:    #F6F8FA;
+    --border:     #E2E8F0;
+    --white:      #FFFFFF;
+    --text:       #1A2433;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: #F0F4F8;
+    color: var(--text);
+    line-height: 1.6;
+  }
+
+  /* ── NAV ── */
+  nav {
+    background: var(--navy);
+    padding: 0 2rem;
+    display: flex;
+    align-items: center;
+    gap: 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 12px rgba(0,0,0,.25);
+  }
+  .nav-brand {
+    font-family: 'DM Serif Display', serif;
+    color: var(--gold);
+    font-size: 1rem;
+    padding: 1rem 1.5rem 1rem 0;
+    border-right: 1px solid rgba(255,255,255,.15);
+    margin-right: 0.5rem;
+    white-space: nowrap;
+    letter-spacing: .02em;
+  }
+  nav a {
+    color: rgba(255,255,255,.75);
+    text-decoration: none;
+    font-size: .78rem;
+    font-weight: 500;
+    padding: 1rem .85rem;
+    transition: color .15s, background .15s;
+    letter-spacing: .03em;
+    text-transform: uppercase;
+  }
+  nav a:hover, nav a.active { color: #fff; background: rgba(255,255,255,.08); }
+
+  /* ── HERO ── */
+  .hero {
+    background: linear-gradient(135deg, var(--navy) 0%, #1A3A4A 60%, var(--teal) 100%);
+    color: white;
+    padding: 3.5rem 2rem 3rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Ccircle cx='30' cy='30' r='20'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    pointer-events: none;
+  }
+  .hero-eyebrow {
+    font-size: .72rem;
+    font-weight: 600;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: .75rem;
+  }
+  .hero h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(1.9rem, 4vw, 2.8rem);
+    font-weight: 400;
+    line-height: 1.2;
+    margin-bottom: .75rem;
+  }
+  .hero p {
+    font-size: .95rem;
+    color: rgba(255,255,255,.78);
+    max-width: 560px;
+    margin: 0 auto 1.75rem;
+  }
+  .hero-chips {
+    display: flex; gap: .5rem; flex-wrap: wrap; justify-content: center;
+  }
+  .chip {
+    background: rgba(255,255,255,.12);
+    border: 1px solid rgba(255,255,255,.2);
+    color: rgba(255,255,255,.9);
+    border-radius: 99px;
+    padding: .3rem .85rem;
+    font-size: .75rem;
+    font-weight: 500;
+  }
+
+  /* ── LAYOUT ── */
+  .container { max-width: 960px; margin: 0 auto; padding: 0 1.5rem; }
+
+  /* ── SECTIONS ── */
+  .section {
+    background: var(--white);
+    border-radius: 12px;
+    margin: 1.5rem auto;
+    max-width: 960px;
+    box-shadow: 0 1px 4px rgba(0,0,0,.07);
+    overflow: hidden;
+  }
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: .85rem;
+    padding: 1.1rem 1.5rem;
+    border-bottom: 1px solid var(--border);
+    cursor: pointer;
+    user-select: none;
+  }
+  .section-header:hover { background: var(--gray-lt); }
+  .section-icon {
+    width: 34px; height: 34px;
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1rem;
+    flex-shrink: 0;
+  }
+  .section-header h2 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.15rem;
+    font-weight: 400;
+    color: var(--navy);
+    flex: 1;
+  }
+  .section-header .badge {
+    font-size: .68rem;
+    font-weight: 600;
+    padding: .2rem .6rem;
+    border-radius: 99px;
+    text-transform: uppercase;
+    letter-spacing: .06em;
+  }
+  .badge-action  { background: var(--orange-lt); color: var(--orange); }
+  .badge-review  { background: var(--gold-light); color: #7A5A00; }
+  .badge-info    { background: var(--teal-light); color: var(--teal); }
+  .chevron { color: var(--gray); font-size: .9rem; transition: transform .2s; }
+  .chevron.open { transform: rotate(180deg); }
+
+  .section-body { padding: 1.25rem 1.5rem; display: none; }
+  .section-body.open { display: block; }
+
+  /* ── CONTENT BLOCKS ── */
+  .lead {
+    font-size: .9rem;
+    color: var(--gray);
+    margin-bottom: 1.1rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px dashed var(--border);
+    font-style: italic;
+  }
+
+  h3 {
+    font-size: .82rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .08em;
+    color: var(--navy);
+    margin: 1.25rem 0 .6rem;
+  }
+  h3:first-child { margin-top: 0; }
+
+  /* ── STATUS CHIPS ── */
+  .status-flow {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: .4rem;
+    margin: .75rem 0 1rem;
+  }
+  .status {
+    display: inline-flex;
+    align-items: center;
+    gap: .35rem;
+    padding: .35rem .85rem;
+    border-radius: 99px;
+    font-size: .78rem;
+    font-weight: 600;
+    letter-spacing: .02em;
+  }
+  .status-arrow { color: var(--gray); font-size: .8rem; font-weight: 400; }
+  .s-new       { background: #E8F4FA; color: #1A6B8A; border: 1.5px solid #BDE0F0; }
+  .s-planning  { background: #EDE8F8; color: #5B4A8A; border: 1.5px solid #C9BEF0; }
+  .s-proposal  { background: var(--gold-light); color: var(--orange); border: 1.5px solid #E8C87A; }
+  .s-booked    { background: var(--teal-light); color: var(--teal); border: 1.5px solid var(--teal-mid); }
+  .s-pretravel { background: #E8F0FA; color: var(--navy); border: 1.5px solid #B8CCE8; }
+  .s-traveling { background: #FDF0E6; color: var(--orange); border: 1.5px solid #F0C8A0; }
+  .s-home      { background: #D6F0E8; color: var(--teal); border: 1.5px solid var(--teal-mid); }
+  .s-ghost     { background: #F8E8E8; color: var(--red); border: 1.5px solid #E8B8B8; }
+  .s-cancel    { background: #f0f0f0; color: #666; border: 1.5px solid #ccc; }
+  .s-archive   { background: #f0f0f0; color: #555; border: 1.5px solid #bbb; }
+
+  /* ── CARDS GRID ── */
+  .card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: .85rem;
+    margin: .75rem 0;
+  }
+  .card {
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1rem;
+    background: var(--gray-lt);
+  }
+  .card-label {
+    font-size: .7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .09em;
+    color: var(--gray);
+    margin-bottom: .4rem;
+  }
+  .card p { font-size: .83rem; color: var(--text); line-height: 1.55; }
+
+  /* ── ALERT BOXES ── */
+  .alert {
+    border-radius: 8px;
+    padding: .85rem 1rem;
+    font-size: .83rem;
+    margin: .75rem 0;
+    display: flex;
+    gap: .65rem;
+    align-items: flex-start;
+    line-height: 1.55;
+  }
+  .alert-icon { font-size: 1rem; flex-shrink: 0; margin-top: .05rem; }
+  .alert-action  { background: var(--orange-lt); border-left: 3px solid var(--orange); color: #6B3000; }
+  .alert-info    { background: var(--sky); border-left: 3px solid #1A6B8A; color: #1A3A52; }
+  .alert-tip     { background: var(--teal-light); border-left: 3px solid var(--teal-mid); color: var(--teal); }
+  .alert-warn    { background: var(--red-lt); border-left: 3px solid var(--red); color: var(--red); }
+
+  /* ── QUESTION BLOCKS ── */
+  .question-list { list-style: none; margin: .75rem 0; }
+  .question-list li {
+    display: flex;
+    gap: .65rem;
+    align-items: flex-start;
+    padding: .6rem .75rem;
+    border-radius: 7px;
+    font-size: .84rem;
+    margin-bottom: .35rem;
+    background: var(--gray-lt);
+    border: 1px solid var(--border);
+  }
+  .q-icon { font-size: .95rem; flex-shrink: 0; }
+  .q-text { color: var(--navy); }
+  .q-sub  { font-size: .75rem; color: var(--gray); display: block; margin-top: .15rem; }
+
+  /* ── WORKFLOW STEPS ── */
+  .workflow-steps { margin: .75rem 0; }
+  .wf-step {
+    display: flex;
+    gap: .85rem;
+    align-items: flex-start;
+    margin-bottom: .6rem;
+  }
+  .wf-num {
+    width: 26px; height: 26px;
+    border-radius: 50%;
+    background: var(--teal);
+    color: white;
+    font-size: .72rem;
+    font-weight: 700;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    margin-top: .1rem;
+  }
+  .wf-content h4 { font-size: .84rem; font-weight: 600; color: var(--navy); margin-bottom: .15rem; }
+  .wf-content p  { font-size: .8rem; color: var(--gray); line-height: 1.5; }
+
+  /* ── TAG TABLE ── */
+  .tag-table { width: 100%; border-collapse: collapse; font-size: .82rem; margin: .75rem 0; }
+  .tag-table th {
+    background: var(--navy);
+    color: white;
+    padding: .5rem .75rem;
+    text-align: left;
+    font-size: .72rem;
+    font-weight: 600;
+    letter-spacing: .05em;
+    text-transform: uppercase;
+  }
+  .tag-table td { padding: .55rem .75rem; border-bottom: 1px solid var(--border); vertical-align: top; }
+  .tag-table tr:nth-child(even) td { background: var(--gray-lt); }
+  .tag-pill {
+    display: inline-block;
+    background: var(--sky);
+    border: 1px solid #BDE0F0;
+    border-radius: 5px;
+    padding: .15rem .5rem;
+    font-size: .72rem;
+    font-family: 'JetBrains Mono', monospace;
+    color: #1A6B8A;
+  }
+
+  /* ── DIVIDER ── */
+  .divider { border: none; border-top: 1px dashed var(--border); margin: 1.1rem 0; }
+
+  /* ── PAGE FOOTER ── */
+  footer {
+    text-align: center;
+    padding: 2rem;
+    font-size: .78rem;
+    color: var(--gray);
+  }
+
+  /* ── EXPAND ALL ── */
+  .toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 960px;
+    margin: 1.25rem auto .25rem;
+    padding: 0 1.5rem;
+  }
+  .toolbar-title { font-size: .8rem; color: var(--gray); font-weight: 500; }
+  .btn-sm {
+    background: var(--navy);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    padding: .4rem .9rem;
+    font-size: .75rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background .15s;
+  }
+  .btn-sm:hover { background: var(--teal); }
+
+  @media (max-width: 640px) {
+    nav a { display: none; }
+    .hero { padding: 2.5rem 1.25rem 2rem; }
+    .section-body { padding: 1rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-brand">Tern Guide ✈</div>
+  <a href="#statuses" class="active">Statuses</a>
+  <a href="#settings">Settings</a>
+  <a href="#library">Library</a>
+  <a href="#forms">Forms</a>
+  <a href="#emails">Emails</a>
+  <a href="#workflows">Workflows</a>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-eyebrow">Adventure the World Travels · Tern Setup Guide</div>
+  <h1>Your Tern Cheat Sheet,<br><em>Christine</em></h1>
+  <p>A step-by-step guide to getting your Tern setup streamlined, consistent, and ready to work for you — so no client falls through the cracks.</p>
+  <div class="hero-chips">
+    <span class="chip">🗂 Trip Statuses</span>
+    <span class="chip">⚙️ Business Settings</span>
+    <span class="chip">📚 Library</span>
+    <span class="chip">📋 Forms</span>
+    <span class="chip">✉️ Email Templates</span>
+    <span class="chip">⚡ Workflows</span>
+  </div>
+</div>
+
+<div class="toolbar">
+  <span class="toolbar-title">Click any section to expand</span>
+  <button class="btn-sm" onclick="toggleAll()">Expand All</button>
+</div>
+
+<!-- ─────────────────────────────────────────
+     SECTION 1 — TRIP STATUSES
+───────────────────────────────────────── -->
+<div class="section" id="statuses">
+  <div class="section-header" onclick="toggle(this)">
+    <div class="section-icon" style="background:#E8F4FA;">🗂</div>
+    <h2>Trip Statuses</h2>
+    <span class="badge badge-action">Action Required</span>
+    <span class="chevron">▼</span>
+  </div>
+  <div class="section-body">
+    <p class="lead">Your current status list has grown too long and includes statuses that overlap or don't serve a clear purpose. Here's a recommended streamlined flow — and some questions for you about a few of them.</p>
+
+    <h3>✅ Recommended Status Flow</h3>
+    <div class="status-flow">
+      <span class="status s-new">🌱 New Lead</span>
+      <span class="status-arrow">→</span>
+      <span class="status s-planning">🗺 Planning</span>
+      <span class="status-arrow">→</span>
+      <span class="status s-proposal">📄 Proposal Sent</span>
+      <span class="status-arrow">→</span>
+      <span class="status s-booked">✅ Booked</span>
+      <span class="status-arrow">→</span>
+      <span class="status s-pretravel">🗓 Pre-Travel</span>
+      <span class="status-arrow">→</span>
+      <span class="status s-traveling">✈️ Traveling</span>
+      <span class="status-arrow">→</span>
+      <span class="status s-home">🏡 Welcome Home</span>
+    </div>
+    <div class="status-flow">
+      <span class="status s-ghost">👻 Ghosted</span>
+      <span class="status s-cancel">✕ Cancelled</span>
+      <span class="status s-archive">📦 Archived</span>
+    </div>
+
+    <div class="alert alert-info">
+      <span class="alert-icon">ℹ️</span>
+      <div><strong>Pre-Travel</strong> triggers automatically at 30 days out from the trip start date. This is when the pre-travel document wrap-up task fires and the final detail emails go out.</div>
+    </div>
+
+    <hr class="divider">
+    <h3>📝 Notes on Specific Statuses</h3>
+    <div class="card-grid">
+      <div class="card">
+        <div class="card-label">Booked</div>
+        <p>This means the <strong>deposit has been paid</strong> and the trip is secured — but there may still be elements to plan (excursions, transfers, hotels, etc.). Booked ≠ fully planned.</p>
+      </div>
+      <div class="card">
+        <div class="card-label">Post-Travel → Removed</div>
+        <p><strong>Post-Travel</strong> and <strong>Welcome Home</strong> have been merged into a single <strong>Welcome Home</strong> status. No need for two statuses at this stage.</p>
+      </div>
+      <div class="card">
+        <div class="card-label">Ghosted</div>
+        <p>Keep this as a <strong>tag</strong> rather than a status if you want to be able to filter — or use it as a status to clearly mark leads that went quiet. Either works.</p>
+      </div>
+      <div class="card">
+        <div class="card-label">Intake → Removed</div>
+        <p><strong>Intake</strong> and <strong>Sent Planning</strong> don't map to a clear stage in the client journey. <strong>New Lead</strong> covers everything from first contact through your initial call.</p>
+      </div>
+    </div>
+
+    <hr class="divider">
+    <h3>❓ Questions for You, Christine</h3>
+    <ul class="question-list">
+      <li><span class="q-icon">💬</span><span class="q-text"><strong>Groups, Prospect Trips, Dream Ideas</strong> — what was your intention for these? Are they types of trips, pipeline categories, or something else? <span class="q-sub">Knowing the purpose helps determine whether these should be statuses, tags, or trip types.</span></span></li>
+      <li><span class="q-icon">💬</span><span class="q-text"><strong>Traveled vs. Stored</strong> — what does "Stored" mean to you? Is this different from Archived? <span class="q-sub">If "Traveled" = trips that are complete, this maps to Welcome Home. "Stored" may simply be Archived.</span></span></li>
+      <li><span class="q-icon">💬</span><span class="q-text"><strong>Archived vs. Cancelled</strong> — do you need both, or would a single "Inactive" category cover all trips that are no longer active? <span class="q-sub">Simpler is usually better here.</span></span></li>
+    </ul>
+  </div>
+</div>
+
+<!-- ─────────────────────────────────────────
+     SECTION 2 — BUSINESS SETTINGS
+───────────────────────────────────────── -->
+<div class="section" id="settings">
+  <div class="section-header" onclick="toggle(this)">
+    <div class="section-icon" style="background:#FDF0E6;">⚙️</div>
+    <h2>Business Settings</h2>
+    <span class="badge badge-review">Review Needed</span>
+    <span class="chevron">▼</span>
+  </div>
+  <div class="section-body">
+    <p class="lead">Several settings need to be confirmed or cleaned up. Work through each item below and confirm your preference so we can finalize your setup.</p>
+
+    <h3>📅 Scheduling — Planning Consultation Link</h3>
+    <div class="alert alert-info">
+      <span class="alert-icon">✅</span>
+      <div>Confirm: <strong>Can the "Planning Consultation with Christine" link be used as your client-facing booking tool?</strong> If yes, this link will be embedded in your initial inquiry email and onboarding templates so clients can self-schedule directly.</div>
+    </div>
+
+    <h3>💳 Planning Fees — Stripe</h3>
+    <div class="alert alert-tip">
+      <span class="alert-icon">✅</span>
+      <div>Confirm: <strong>All planning fees will be sent via Stripe.</strong> Your email template (Next Steps + Trip Recap) includes language for both the Stripe invoice and agency agreement. If this is correct, no changes needed.</div>
+    </div>
+
+    <h3>❓ Items to Clarify</h3>
+    <ul class="question-list">
+      <li><span class="q-icon">❓</span><span class="q-text"><strong>Project Expedition</strong> — what is this, and does it belong in your Tern setup? <span class="q-sub">Please clarify so we know whether to keep, integrate, or remove it.</span></span></li>
+      <li><span class="q-icon">❓</span><span class="q-text"><strong>Travel Insurance</strong> — are you currently presenting insurance through a specific provider in Tern? <span class="q-sub">We want to confirm the right touchpoint in your workflow for sending insurance options.</span></span></li>
+    </ul>
+
+    <hr class="divider">
+    <h3>🏷 Disney Cruise Line Tags — Simplify</h3>
+    <div class="alert alert-action">
+      <span class="alert-icon">⚠️</span>
+      <div>You currently have a tag for <strong>each individual Disney Cruise Line ship</strong>. This is more granular than necessary and creates clutter. <strong>Recommendation: consolidate to a single "Disney Cruise Line" tag</strong>, or at most separate by category (Disney Cruise vs. Disney World). Confirm whether ship-level tags are truly useful to you before keeping them.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ─────────────────────────────────────────
+     SECTION 3 — LIBRARY
+───────────────────────────────────────── -->
+<div class="section" id="library">
+  <div class="section-header" onclick="toggle(this)">
+    <div class="section-icon" style="background:#D6F0E8;">📚</div>
+    <h2>Library</h2>
+    <span class="badge badge-action">Build Out</span>
+    <span class="chevron">▼</span>
+  </div>
+  <div class="section-body">
+    <p class="lead">You currently have only 25 activity items in your library. This is an area with a big opportunity to save time — but the goal isn't to build from scratch. Start with what you already know.</p>
+
+    <div class="alert alert-tip">
+      <span class="alert-icon">💡</span>
+      <div><strong>Best approach:</strong> Go through your existing active and recently traveled trips and pull the hotels, excursions, and transfers you book repeatedly. Save those to the library first. Building from real trips is faster and more useful than creating items speculatively.</div>
+    </div>
+
+    <h3>Where to Start</h3>
+    <div class="workflow-steps">
+      <div class="wf-step">
+        <div class="wf-num">1</div>
+        <div class="wf-content">
+          <h4>Review active & recently traveled trips</h4>
+          <p>Look at trips currently in Traveling, Pre-Travel, or Welcome Home status. Pull any hotels, transfers, or experiences you plan to book again.</p>
+        </div>
+      </div>
+      <div class="wf-step">
+        <div class="wf-num">2</div>
+        <div class="wf-content">
+          <h4>Save frequently used hotels first</h4>
+          <p>Hotels you book for Disney, cruises, or FIT trips should be saved to the library with your standard descriptions already personalized in your voice.</p>
+        </div>
+      </div>
+      <div class="wf-step">
+        <div class="wf-num">3</div>
+        <div class="wf-content">
+          <h4>Build itinerary templates from real trips</h4>
+          <p>Once you have library items saved, you can assemble them into reusable itinerary templates by destination — so new trips of the same type can be built in minutes, not hours.</p>
+        </div>
+      </div>
+      <div class="wf-step">
+        <div class="wf-num">4</div>
+        <div class="wf-content">
+          <h4>Add activities, excursions & transfers</h4>
+          <p>Shore excursions, airport transfers, and common day-trip options can all be library items. Add as you encounter them, not all at once.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ─────────────────────────────────────────
+     SECTION 4 — FORMS
+───────────────────────────────────────── -->
+<div class="section" id="forms">
+  <div class="section-header" onclick="toggle(this)">
+    <div class="section-icon" style="background:#EDE8F8;">📋</div>
+    <h2>Forms</h2>
+    <span class="badge badge-info">In Progress</span>
+    <span class="chevron">▼</span>
+  </div>
+  <div class="section-body">
+    <p class="lead">Forms are where your client process begins. The initial trip inquiry form is your entry point into Tern — here's how it's designed to work.</p>
+
+    <h3>How the Trip Inquiry Form Works</h3>
+    <div class="workflow-steps">
+      <div class="wf-step">
+        <div class="wf-num">1</div>
+        <div class="wf-content">
+          <h4>Client submits the Trip Inquiry Form</h4>
+          <p>The form captures limited contact info and trip details — just enough to get started. It does not need to be exhaustive at this stage.</p>
+        </div>
+      </div>
+      <div class="wf-step">
+        <div class="wf-num">2</div>
+        <div class="wf-content">
+          <h4>Tern automatically creates the contact and trip</h4>
+          <p>When the form is submitted, Tern creates both a contact record and a new trip, labeled as <strong>New Lead</strong>. This is why New Lead is the only status you need at intake.</p>
+        </div>
+      </div>
+      <div class="wf-step">
+        <div class="wf-num">3</div>
+        <div class="wf-content">
+          <h4>Save the form link as an email template in your email client</h4>
+          <p>Keep a standard response email ready in Outlook or Gmail that includes the form link. When anyone asks about a trip, send that email — one click, and the process is started.</p>
+        </div>
+      </div>
+      <div class="wf-step">
+        <div class="wf-num">4</div>
+        <div class="wf-content">
+          <h4>Discovery call → Agency Agreement</h4>
+          <p>After the form is submitted, you have a conversation with the client. From there, the Agency Client Agreement email template already exists in Tern — send that to move forward.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="alert alert-tip">
+      <span class="alert-icon">✅</span>
+      <div>The Agency Client Agreement email template is already built in Tern. No action needed on that one — just confirm you know where it lives and are using it consistently.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ─────────────────────────────────────────
+     SECTION 5 — EMAIL TEMPLATES
+───────────────────────────────────────── -->
+<div class="section" id="emails">
+  <div class="section-header" onclick="toggle(this)">
+    <div class="section-icon" style="background:#F5EDD5;">✉️</div>
+    <h2>Email Templates</h2>
+    <span class="badge badge-info">12 Templates Built</span>
+    <span class="chevron">▼</span>
+  </div>
+  <div class="section-body">
+    <p class="lead">Your email templates are split into two folders: <strong>Manual Send</strong> (you decide when to send) and <strong>Automated</strong> (triggered by trip events). Here's what's in each folder, how it works, and what needs your confirmation.</p>
+
+    <div class="alert alert-action">
+      <span class="alert-icon">⭐</span>
+      <div><strong>TravelBizBoss platform switch (under $100) is still recommended.</strong> This delivers updated cruise-specific emails and workflows directly into Tern — deposit/final payment emails, booking window info, packing lists, and more. These have been updated since your Traveljoy purchase and should not be migrated manually.</div>
+    </div>
+
+    <hr class="divider">
+
+    <!-- MANUAL SEND -->
+    <h3>✋ Manual Send Emails — You Choose When to Send</h3>
+    <p style="font-size:.83rem;color:var(--gray);margin-bottom:.85rem;">These follow your client conversation flow. You send them at the right moment — they are not triggered automatically.</p>
+
+    <table class="tag-table">
+      <thead>
+        <tr><th>#</th><th>Template Name</th><th>Subject</th><th>Notes & Questions</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td><strong>Next Steps — Planning Fee & Trip Recap</strong></td>
+          <td>Next Steps — Planning Fee & Trip Recap</td>
+          <td>Sent after your call. Includes agency client agreement attachment + Stripe invoice language. Has two versions embedded: one for Stripe invoice, one for a separate fee link. Send this first after every discovery call.</td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td><strong>Planning Fee or Signed Agreement Confirmation</strong></td>
+          <td>Paperwork Received — Let's Get Started!</td>
+          <td>Has variable language: one version says "I received your planning fee," the other says "I received your signed agreement." Kept as <strong>manual</strong> to allow flexibility — you may not always charge a fee or require an agreement with returning clients.
+            <div class="alert alert-action" style="margin-top:.5rem;font-size:.78rem;">
+              <span class="alert-icon">❓</span>
+              <div><strong>Confirm with Christine:</strong> Do you consistently charge a planning fee? Do you always send an agency agreement? Or does this vary by client/trip type?</div>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td><strong>Send Client Proposal</strong></td>
+          <td>Your Custom Travel Proposal Is Ready!</td>
+          <td>Includes the Tern trip link. Tells the client what to expect next — approve the itinerary or authorize payments. Sent when the proposal is ready.</td>
+        </tr>
+        <tr>
+          <td>4</td>
+          <td><strong>Proposal Follow-Up</strong></td>
+          <td>Any Questions About Your Proposal?</td>
+          <td>Simple check-in if the client hasn't responded. Send 3–5 days after the proposal email.</td>
+        </tr>
+        <tr>
+          <td>5</td>
+          <td><strong>You're Booked</strong></td>
+          <td>It's Official — You're Booked</td>
+          <td>Sent to the client after booking is confirmed. Tells them what to expect, what's still being planned, and how to access their itinerary in Tern. Reminds them the deposit is in and the trip is secured.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <hr class="divider">
+
+    <!-- AUTOMATED -->
+    <h3>⚡ Automated Emails — Triggered by Trip Events</h3>
+    <p style="font-size:.83rem;color:var(--gray);margin-bottom:.85rem;">These send automatically based on trip status changes or dates. You set them up once per trip (or via workflow) and they fire on schedule.</p>
+
+    <table class="tag-table">
+      <thead>
+        <tr><th>#</th><th>Template Name</th><th>Subject</th><th>Trigger & Notes</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td><strong>Tern Account</strong></td>
+          <td>Your Vacation Plans: Setting Up Your Travel App</td>
+          <td>Reminds the client to create their Tern account. Kept separate from the signed agreement email because we don't yet know if you consistently use agreements or fees — so this fires independently.
+            <div class="alert alert-tip" style="margin-top:.5rem;font-size:.78rem;">
+              <span class="alert-icon">💡</span>
+              <div>Once we confirm your fee/agreement process, this can potentially be folded into the planning confirmation email.</div>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td><strong>Travel Insurance — 1st Touchpoint</strong></td>
+          <td>Don't Forget Travel Insurance for Your Upcoming Trip</td>
+          <td>An introductory tap on the shoulder. Explains why travel insurance is recommended and lets the client know a quote is coming. Not a hard sell — just sets the expectation.
+            <div class="alert alert-action" style="margin-top:.5rem;font-size:.78rem;">
+              <span class="alert-icon">❓</span>
+              <div><strong>Confirm with Christine:</strong> Do you send a travel insurance quote for every trip? The email currently says a quote will be provided — confirm this is always the case.</div>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td><strong>Proposal Approved (when client approves)</strong></td>
+          <td>The Fun Part Starts Now!</td>
+          <td><strong>Only fires if the client clicks the "Approve Itinerary" button in Tern.</strong> If you approve the itinerary on their behalf, this email does NOT send. Make sure clients know to use that button.</td>
+        </tr>
+        <tr>
+          <td>4</td>
+          <td><strong>90-Day Check-In</strong></td>
+          <td>Your Trip Is Getting Close — Let's Fine-Tune the Details!</td>
+          <td>Fires 90 days before trip start. Primarily designed for FIT trips — asks about special experiences, dining reservations, spa appointments. Includes a form link; you get notified when it's completed.</td>
+        </tr>
+        <tr>
+          <td>5</td>
+          <td><strong>45-Day Check-In & Profile Refresh</strong></td>
+          <td>45 Days Until Your Trip — Let's Make Sure Everything Is Perfect!</td>
+          <td>Fires 45 days before trip start. Sends a profile update form so clients can update passport details, emergency contacts, and loyalty programs. Responses automatically update the contact record in Tern.</td>
+        </tr>
+        <tr>
+          <td>6</td>
+          <td><strong>48-Hour Bon Voyage</strong></td>
+          <td>Your Adventure Starts Soon</td>
+          <td>Fires 48 hours before departure. Points clients to the Tern app and their trip link. If they're flying, reminds them it's time to check in online. Wishes them smooth travels — works for all trip types.</td>
+        </tr>
+        <tr>
+          <td>7</td>
+          <td><strong>Arrival Day Check-In</strong></td>
+          <td>Checking In — How's the Trip Going?</td>
+          <td>Fires approximately 2 days after trip start. A warm check-in to make sure everything is going smoothly. Good for all trip types.</td>
+        </tr>
+        <tr>
+          <td style="color:var(--gray)">8</td>
+          <td style="color:var(--gray)"><strong>Welcome Home + Survey</strong> <em>(coming)</em></td>
+          <td style="color:var(--gray)">TBD</td>
+          <td style="color:var(--gray)">Fires a few days after trip end. Celebrates the trip, asks for feedback and photos. Part of the All Trips workflow — being added next.</td>
+        </tr>
+        <tr>
+          <td style="color:var(--gray)">9</td>
+          <td style="color:var(--gray)"><strong>6-Month Follow-Up</strong> <em>(coming)</em></td>
+          <td style="color:var(--gray)">TBD</td>
+          <td style="color:var(--gray)">Fires 6 months after trip end. Re-engages the client and plants the seed for the next adventure. Part of the All Trips workflow.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <hr class="divider">
+    <div class="alert alert-warn">
+      <span class="alert-icon">🗑</span>
+      <div><strong>Empty folders:</strong> Several template folders exist with no content. These will be cleaned up once TravelBizBoss content is imported and the full template library is confirmed.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ─────────────────────────────────────────
+     SECTION 6 — WORKFLOWS
+───────────────────────────────────────── -->
+<div class="section" id="workflows">
+  <div class="section-header" onclick="toggle(this)">
+    <div class="section-icon" style="background:#D6F0E8;">⚡</div>
+    <h2>Workflows</h2>
+    <span class="badge badge-info">In Progress</span>
+    <span class="chevron">▼</span>
+  </div>
+  <div class="section-body">
+    <p class="lead">You currently have three numbered workflows in progress. Here's how they're structured and what still needs to be built.</p>
+
+    <h3>Workflow #1 — All Trips: Inbound Leads</h3>
+    <div class="card">
+      <div class="card-label">Trigger: Trip Created</div>
+      <p>3 tasks + 1 email. The email (<em>Looking forward to connecting</em>) goes out when a trip is created — but note: this fires whether <strong>Christine</strong> creates the trip OR the <strong>client</strong> submits the form. The email language must work for both scenarios.</p>
+    </div>
+    <div class="alert alert-warn" style="margin-top:.75rem">
+      <span class="alert-icon">⚠️</span>
+      <div>Review the "Trip Created" trigger email to make sure it reads appropriately whether it was created by you or by the client via the inquiry form.</div>
+    </div>
+
+    <hr class="divider">
+    <h3>Workflow #2 — Planning</h3>
+    <div class="card">
+      <div class="card-label">Trigger: Trip Status → Planning</div>
+      <p>Trip-agnostic planning steps: contact preferred supplier, away you go. Travel insurance initial touchpoints will remain here. The Tern account setup email will be removed from this workflow (it's already handled earlier in the process).</p>
+    </div>
+
+    <hr class="divider">
+    <h3>Workflow #3 — Payments</h3>
+    <div class="card">
+      <div class="card-label">Trigger: Trip Status → Booked</div>
+      <p>Payment workflow fires immediately when a trip is marked Booked. This handles deposit confirmation, payment reminders (10-day, 1-day, 1-day-after), and final payment emails.</p>
+    </div>
+
+    <hr class="divider">
+    <h3>Workflow #4 — All Trips: Booked (Coming Next)</h3>
+    <div class="card">
+      <div class="card-label">Designed to work alongside trip-type specific workflows</div>
+      <p>This workflow is trip-agnostic and works <em>in conjunction with</em> cruise, FIT, Walt Disney World, and other trip-type workflows. It includes universal reminders that apply regardless of trip type:</p>
+    </div>
+    <div class="workflow-steps" style="margin-top:.75rem">
+      <div class="wf-step">
+        <div class="wf-num">→</div>
+        <div class="wf-content">
+          <h4>Submit to Grasp for commission tracking</h4>
+          <p>Task reminder added at booking so Christine gets paid. This fires for every trip type.</p>
+        </div>
+      </div>
+      <div class="wf-step">
+        <div class="wf-num">→</div>
+        <div class="wf-content">
+          <h4>Pre-travel document wrap-up</h4>
+          <p>Reminder to compile and send final travel documents — regardless of whether it's a cruise, FIT, or Disney trip.</p>
+        </div>
+      </div>
+      <div class="wf-step">
+        <div class="wf-num">→</div>
+        <div class="wf-content">
+          <h4>Works alongside: Cruise workflow, FIT workflow, Walt Disney World workflow</h4>
+          <p>Trip-specific workflows add their own emails and tasks on top of this base booked workflow.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  Adventure the World Travels · Tern Setup Guide · Built for Christine Scheeler<br>
+  <span style="color:#bbb;font-size:.72rem;">Questions? Reach out before making changes to the master workflow library.</span>
+</footer>
+
+<script>
+function toggle(header) {
+  const body = header.nextElementSibling;
+  const chevron = header.querySelector('.chevron');
+  body.classList.toggle('open');
+  chevron.classList.toggle('open');
+}
+
+function toggleAll() {
+  const bodies = document.querySelectorAll('.section-body');
+  const chevrons = document.querySelectorAll('.chevron');
+  const anyOpen = [...bodies].some(b => b.classList.contains('open'));
+  bodies.forEach(b => b.classList.toggle('open', !anyOpen));
+  chevrons.forEach(c => c.classList.toggle('open', !anyOpen));
+  document.querySelector('.btn-sm').textContent = anyOpen ? 'Expand All' : 'Collapse All';
+}
+
+// Smooth scroll for nav links
+document.querySelectorAll('nav a').forEach(a => {
+  a.addEventListener('click', e => {
+    e.preventDefault();
+    const target = document.querySelector(a.getAttribute('href'));
+    if (target) {
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      // Auto-open section
+      const body = target.querySelector('.section-body');
+      const chevron = target.querySelector('.chevron');
+      if (body && !body.classList.contains('open')) {
+        body.classList.add('open');
+        chevron.classList.add('open');
+      }
+    }
+  });
+});
+</script>
+</body>
+</html>

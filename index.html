@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Tern Setup Guide — Adventure the World Travels</title>
+<title>Tern Outline — Adventure the World Travels</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
 
@@ -370,19 +370,21 @@
 
 <!-- NAV -->
 <nav>
-  <div class="nav-brand">Tern Guide ✈</div>
-  <a href="#statuses" class="active">Statuses</a>
+  <div class="nav-brand">Tern Outline ✈</div>
+  <a href="#statuses">Statuses</a>
   <a href="#settings">Settings</a>
   <a href="#library">Library</a>
   <a href="#forms">Forms</a>
   <a href="#emails">Emails</a>
   <a href="#workflows">Workflows</a>
+  <a href="#wdw">WDW</a>
+  <a href="#dcl">DCL</a>
 </nav>
 
 <!-- HERO -->
 <div class="hero">
-  <div class="hero-eyebrow">Adventure the World Travels · Tern Setup Guide</div>
-  <h1>Your Tern Cheat Sheet,<br><em>Christine</em></h1>
+  <div class="hero-eyebrow">Adventure the World Travels · Tern Outline</div>
+  <h1>Your Tern Outline,<br><em>Christine</em></h1>
   <p>A step-by-step guide to getting your Tern setup streamlined, consistent, and ready to work for you — so no client falls through the cracks.</p>
   <div class="hero-chips">
     <span class="chip">🗂 Trip Statuses</span>
@@ -391,6 +393,8 @@
     <span class="chip">📋 Forms</span>
     <span class="chip">✉️ Email Templates</span>
     <span class="chip">⚡ Workflows</span>
+    <span class="chip">🏰 Walt Disney World</span>
+    <span class="chip">🚢 Disney Cruise Line</span>
   </div>
 </div>
 
@@ -774,70 +778,331 @@
   <div class="section-header" onclick="toggle(this)">
     <div class="section-icon" style="background:#D6F0E8;">⚡</div>
     <h2>Workflows</h2>
-    <span class="badge badge-info">In Progress</span>
+    <span class="badge badge-info">4 Workflows — All Trips Complete</span>
     <span class="chevron">▼</span>
   </div>
   <div class="section-body">
-    <p class="lead">You currently have three numbered workflows in progress. Here's how they're structured and what still needs to be built.</p>
 
-    <h3>Workflow #1 — All Trips: Inbound Leads</h3>
-    <div class="card">
-      <div class="card-label">Trigger: Trip Created</div>
-      <p>3 tasks + 1 email. The email (<em>Looking forward to connecting</em>) goes out when a trip is created — but note: this fires whether <strong>Christine</strong> creates the trip OR the <strong>client</strong> submits the form. The email language must work for both scenarios.</p>
+    <!-- HOW WORKFLOWS LAYER — BIG CALLOUT -->
+    <div style="background:var(--navy);border-radius:10px;padding:1.25rem 1.4rem;margin-bottom:1.25rem;">
+      <div style="font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);margin-bottom:.5rem;">How Your Workflow System Works</div>
+      <p style="color:#fff;font-size:.92rem;line-height:1.65;margin-bottom:.85rem;">Your workflows are built in <strong style="color:var(--gold)">two layers</strong>. The four <em>All Trips</em> workflows run for every client, every time — no matter what kind of trip it is. Trip-specific workflows (Disney Cruise, FIT, Walt Disney World) then run <strong style="color:var(--gold)">on top of and alongside</strong> the All Trips foundation. You never have to repeat the universal steps inside a trip-specific workflow — they're already handled.</p>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:.6rem;">
+        <div style="background:rgba(255,255,255,.08);border-radius:7px;padding:.7rem .9rem;">
+          <div style="font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--teal-mid);margin-bottom:.3rem;">Layer 1 — Every Trip</div>
+          <div style="font-size:.82rem;color:rgba(255,255,255,.9);line-height:1.5;">01 All Trips: Inbound Leads<br>02 All Trips: Planning<br>03 All Trips: Payments<br>04 All Trips: Booked</div>
+        </div>
+        <div style="background:rgba(255,255,255,.08);border-radius:7px;padding:.7rem .9rem;">
+          <div style="font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--gold);margin-bottom:.3rem;">Layer 2 — Trip Type (runs alongside)</div>
+          <div style="font-size:.82rem;color:rgba(255,255,255,.9);line-height:1.5;">🚢 Disney Cruise Line<br>🏰 Walt Disney World<br>🗺 FIT / Custom Itinerary<br>+ any future trip types</div>
+        </div>
+      </div>
     </div>
-    <div class="alert alert-warn" style="margin-top:.75rem">
-      <span class="alert-icon">⚠️</span>
-      <div>Review the "Trip Created" trigger email to make sure it reads appropriately whether it was created by you or by the client via the inquiry form.</div>
+
+    <p class="lead">All four All Trips workflows are now complete. Trip-specific workflows layer on top. Here's what each workflow covers.</p>
+
+    <h3>01 — All Trips: Inbound Leads</h3>
+    <div class="card">
+      <div class="card-label">Trigger: Trip Status → Inbound Lead</div>
+      <p>3 tasks + 1 email. The trigger has been updated from "Trip Created" to <strong>trip status = Inbound Lead</strong> — this gives you more control over when the workflow fires, so it's no longer tied to who or how the trip was created.</p>
+    </div>
+    <div class="alert alert-info" style="margin-top:.6rem">
+      <span class="alert-icon">💡</span>
+      <div>With the status-based trigger, the Inbound Leads workflow only fires when a trip is set to <strong>New Lead</strong> status — not automatically on trip creation. This means you control the timing and the email always goes out at the right moment.</div>
     </div>
 
     <hr class="divider">
-    <h3>Workflow #2 — Planning</h3>
+    <h3>02 — All Trips: Planning</h3>
     <div class="card">
       <div class="card-label">Trigger: Trip Status → Planning</div>
-      <p>Trip-agnostic planning steps: contact preferred supplier, away you go. Travel insurance initial touchpoints will remain here. The Tern account setup email will be removed from this workflow (it's already handled earlier in the process).</p>
+      <p>Trip-agnostic planning steps that apply to every trip type. Includes: contact preferred supplier, travel insurance initial touchpoint, and Tern account setup reminder. These steps fire for FIT, cruise, Disney, and any other trip type — no duplication needed in trip-specific workflows.</p>
     </div>
 
     <hr class="divider">
-    <h3>Workflow #3 — Payments</h3>
+    <h3>03 — All Trips: Payments</h3>
     <div class="card">
       <div class="card-label">Trigger: Trip Status → Booked</div>
-      <p>Payment workflow fires immediately when a trip is marked Booked. This handles deposit confirmation, payment reminders (10-day, 1-day, 1-day-after), and final payment emails.</p>
+      <p>Fires immediately when a trip is marked Booked. Handles the complete payment lifecycle: deposit confirmation, 10-day reminder, 1-day reminder, 1-day-past-due notice, and final payment emails. Because this is centralized here, <strong>trip-specific workflows do not need their own payment reminder emails</strong> — it's already covered.</p>
     </div>
 
     <hr class="divider">
-    <h3>Workflow #4 — All Trips: Booked (Coming Next)</h3>
+    <h3>04 — All Trips: Booked ✅ Complete</h3>
     <div class="card">
-      <div class="card-label">Designed to work alongside trip-type specific workflows</div>
-      <p>This workflow is trip-agnostic and works <em>in conjunction with</em> cruise, FIT, Walt Disney World, and other trip-type workflows. It includes universal reminders that apply regardless of trip type:</p>
+      <div class="card-label">Trigger: Trip Status → Booked | Works alongside all trip-type workflows</div>
+      <p>The universal booked workflow — pre and post travel reminders that apply to every trip, regardless of type. This runs at the same time as the Disney Cruise, FIT, or WDW workflow. Each trip-type workflow adds its own specialized emails and tasks on top of this base.</p>
     </div>
     <div class="workflow-steps" style="margin-top:.75rem">
       <div class="wf-step">
-        <div class="wf-num">→</div>
+        <div class="wf-num">1</div>
         <div class="wf-content">
-          <h4>Submit to Grasp for commission tracking</h4>
-          <p>Task reminder added at booking so Christine gets paid. This fires for every trip type.</p>
+          <h4>Submit commission to Grasp</h4>
+          <p>Task reminder fires 5 days after task creation — ensures commission is recorded for every booked trip. No separate task needed in trip-specific workflows.</p>
         </div>
       </div>
       <div class="wf-step">
-        <div class="wf-num">→</div>
+        <div class="wf-num">2</div>
         <div class="wf-content">
-          <h4>Pre-travel document wrap-up</h4>
-          <p>Reminder to compile and send final travel documents — regardless of whether it's a cruise, FIT, or Disney trip.</p>
+          <h4>Add trip-specific tasks as needed</h4>
+          <p>Reminder to customize the workflow for this specific trip — fires 7 days after task creation.</p>
         </div>
       </div>
       <div class="wf-step">
-        <div class="wf-num">→</div>
+        <div class="wf-num">3</div>
         <div class="wf-content">
-          <h4>Works alongside: Cruise workflow, FIT workflow, Walt Disney World workflow</h4>
-          <p>Trip-specific workflows add their own emails and tasks on top of this base booked workflow.</p>
+          <h4>15-Day Pre-Travel Document Wrap-Up</h4>
+          <p>Task to compile and send final travel documents — fires 22 days before trip start. Applies to every trip type.</p>
         </div>
       </div>
+      <div class="wf-step">
+        <div class="wf-num">4</div>
+        <div class="wf-content">
+          <h4>48-Hour Bon Voyage</h4>
+          <p>Automated email fires 2 days before trip starts. Points client to Tern app and itinerary. Includes flight check-in reminder if they're flying. Active for all trips.</p>
+        </div>
+      </div>
+      <div class="wf-step">
+        <div class="wf-num">5</div>
+        <div class="wf-content">
+          <h4>Arrival Day Check-In</h4>
+          <p>Automated email fires 2 days after trip starts. Warm check-in — currently Inactive, activate once confirmed.</p>
+        </div>
+      </div>
+      <div class="wf-step">
+        <div class="wf-num">6</div>
+        <div class="wf-content">
+          <h4>Welcome Home Survey</h4>
+          <p>Automated email fires 2 days after trip ends. Celebrates the trip, asks for feedback and photos. Currently Inactive — activate once email is confirmed.</p>
+        </div>
+      </div>
+      <div class="wf-step">
+        <div class="wf-num">7</div>
+        <div class="wf-content">
+          <h4>6-Month Post-Travel Check-In</h4>
+          <p>Automated email fires 180 days after trip ends. Re-engages the client for future travel. Currently Inactive — activate once email is confirmed.</p>
+        </div>
+      </div>
+      <div class="wf-step">
+        <div class="wf-num">8</div>
+        <div class="wf-content">
+          <h4>Review Trip Feedback + Archive</h4>
+          <p>Task to review client feedback fires 10 days after trip end. Archive task fires 181 days after trip end.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="alert alert-tip" style="margin-top:.85rem">
+      <span class="alert-icon">💡</span>
+      <div><strong>Remember:</strong> When you apply a Disney Cruise, WDW, or FIT workflow to a trip — this All Trips: Booked workflow is already running. You don't need to repeat the Grasp task, document wrap-up, bon voyage, arrival check-in, welcome home, or 6-month follow-up inside the trip-specific workflow. Those are handled here.</div>
     </div>
   </div>
 </div>
 
+<!-- ─────────────────────────────────────────
+     SECTION 7 — WALT DISNEY WORLD
+───────────────────────────────────────── -->
+<div class="section" id="wdw">
+  <div class="section-header" onclick="toggle(this)">
+    <div class="section-icon" style="background:#FDE8F5;">🏰</div>
+    <h2>Walt Disney World Workflows</h2>
+    <span class="badge badge-action">Action Required</span>
+    <span class="chevron">▼</span>
+  </div>
+  <div class="section-body">
+    <p class="lead">Two WDW workflows: <strong>Core Planning (91+ days)</strong> for standard bookings and <strong>Close-In (90 days or less)</strong> for late bookings. Both run alongside the All Trips: Booked workflow — no need to duplicate universal tasks here. The table below reflects the WDW Email Master Cross Reference (columns A–D).</p>
+
+    <div class="alert alert-warn">
+      <span class="alert-icon">⚠️</span>
+      <div><strong>WDW-06C Lightning Lane Strategy email is INCOMPLETE.</strong> Its automation fires 9 days before the trip. Pause this automation immediately — do not let it fire to a real client until the email is finished and reviewed.</div>
+    </div>
+
+    <hr class="divider">
+    <h3>🏰 WDW Email Sequence — Cross Reference Columns A–D</h3>
+    <p style="font-size:.83rem;color:var(--gray);margin-bottom:.85rem;">Email code · Subject line · Trigger date · Send type (Auto / Manual). This is your master reference for what sends when in the WDW workflow.</p>
+
+    <table class="tag-table">
+      <thead>
+        <tr>
+          <th style="width:7%">Code</th>
+          <th style="width:32%">Subject Line</th>
+          <th style="width:18%">Trigger Date</th>
+          <th style="width:10%">Type</th>
+          <th>Status &amp; Action Needed</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>WDW-01</td>
+          <td>Welcome to Your Walt Disney World Planning Series</td>
+          <td>Immediately after booking</td>
+          <td><span class="tag-pill">Manual</span></td>
+          <td>⚠️ Keep inactive — activate manually per trip once you've reviewed. Reservation-specific info has been removed from the email body.</td>
+        </tr>
+        <tr>
+          <td>WDW-02</td>
+          <td>Quick Next Step: Link Your Reservation in My Disney Experience</td>
+          <td>1 day after trip status changes</td>
+          <td><span class="tag-pill">Auto</span></td>
+          <td>✅ Ready to activate.</td>
+        </tr>
+        <tr>
+          <td>WDW-03</td>
+          <td>What Happens Next with Your Disney Planning</td>
+          <td>3 days after trip status changes</td>
+          <td><span class="tag-pill">Auto</span></td>
+          <td>✅ Ready to activate. Sets planning expectations for the client.</td>
+        </tr>
+        <tr>
+          <td>WDW-04A</td>
+          <td>Let's Start Thinking About Dining</td>
+          <td>75 days before trip</td>
+          <td><span class="tag-pill">Manual</span></td>
+          <td>⚠️ Must stay Manual. Email contains the client's specific dining reservation date — update before sending each time. See questions below for automation options.</td>
+        </tr>
+        <tr>
+          <td>WDW-04B</td>
+          <td>Dining Booking Strategies and Reminders</td>
+          <td>62 days before trip</td>
+          <td><span class="tag-pill">Manual</span></td>
+          <td>⚠️ Must stay Manual. Contains trip-length language written for a specific past client — review and update before each use. Consider replacing specific dates with a general info block.</td>
+        </tr>
+        <tr>
+          <td>WDW-04C</td>
+          <td>Success! Your Dining Has Been Booked!</td>
+          <td>After dining confirmed</td>
+          <td><span class="tag-pill">Manual</span></td>
+          <td>Send after client confirms dining complete. Update email to point client to their Tern itinerary (all reservations visible there) or remind them details are in the My Disney Experience app.</td>
+        </tr>
+        <tr>
+          <td>WDW-05</td>
+          <td>Magic Band, Magic Band+ and Magic Mobile</td>
+          <td>57 days before trip</td>
+          <td><span class="tag-pill">Auto</span></td>
+          <td>✅ Ready. Add note: classic Magic Bands are no longer sold. Graphics at bottom too small — move to attachment.</td>
+        </tr>
+        <tr>
+          <td>WDW-06a</td>
+          <td>Getting to Know Disney's Lightning Lane Options</td>
+          <td>52 days before trip<br><small style="color:var(--gray)">(Immediately after automation added in Close-In)</small></td>
+          <td><span class="tag-pill">Auto</span></td>
+          <td>Educational intro email. Graphics too small — move to attachment. Rename task in Tern to match this email name for easy tracking.</td>
+        </tr>
+        <tr>
+          <td>WDW-06b</td>
+          <td>Slowing Down at Disney</td>
+          <td>50 days before trip<br><small style="color:var(--gray)">(10 days in Close-In)</small></td>
+          <td><span class="tag-pill">Auto</span></td>
+          <td>✅ Names issue fixed. Confirm timing in each workflow version and activate.</td>
+        </tr>
+        <tr style="background:var(--red-lt)">
+          <td>WDW-06C</td>
+          <td>Your Lightning Lane Booking Day Is Almost Here!</td>
+          <td>9 days before trip</td>
+          <td><span class="tag-pill">Manual</span></td>
+          <td>🔴 EMAIL INCOMPLETE — do not activate. Change to Manual send until finished. Recommendation: streamline to a step-by-step graphic email and move strategy detail to an attachment. Current format is too content-heavy for email.</td>
+        </tr>
+        <tr>
+          <td>WDW-98</td>
+          <td>Final Payment Reminder — Walt Disney World</td>
+          <td>~37 days before trip</td>
+          <td><span class="tag-pill">Auto</span></td>
+          <td>⚠️ Current email contains client-specific information — update to generic before using. Payment reminders are handled by the All Trips: Payments workflow, but a WDW-specific version can supplement.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <hr class="divider">
+    <h3>❓ Questions for Christine — From Cross Reference (Column I Notes)</h3>
+    <p style="font-size:.83rem;color:var(--gray);margin-bottom:.85rem;">These were flagged in the spreadsheet as needing your input before they can be finalized.</p>
+
+    <ul class="question-list">
+      <li><span class="q-icon">❓</span><span class="q-text"><strong>WDW-04A Dining intro — can the date be automated?</strong><br>The email requires you to manually enter the client's specific dining reservation opening date each time. Option A: use "opens in approximately 60 days" language so it can be automated. Option B: keep Manual and add it to your booking task checklist. <span class="q-sub">Which do you prefer?</span></span></li>
+      <li><span class="q-icon">❓</span><span class="q-text"><strong>WDW-04B Dining strategies — build a generic version?</strong><br>This email has language written for a specific trip length that doesn't work universally. Do you want a fully generic version built so it can eventually be automated, or do you prefer to customize it manually each time? <span class="q-sub">A generic version unlocks automation later.</span></span></li>
+      <li><span class="q-icon">❓</span><span class="q-text"><strong>WDW-04B — add an info block with per-trip dining dates?</strong><br>Another option: keep the email generic and add a trip-specific info block in Tern with the exact dining reservation dates. The email then points the client to that block. This keeps the email reusable and the dates client-specific. <span class="q-sub">Interested in this approach?</span></span></li>
+      <li><span class="q-icon">❓</span><span class="q-text"><strong>WDW-05 MagicBand graphics — attachment or link?</strong><br>The bottom graphics are too small to read in email format. Preferred fix: attach as a PDF or link to Disney's MagicBand page. <span class="q-sub">Also confirm: do you want to add a line noting that classic Magic Bands are no longer sold?</span></span></li>
+      <li><span class="q-icon">❓</span><span class="q-text"><strong>WDW-06C Lightning Lane Strategy — one email or two?</strong><br>Options: (a) one concise email with a detailed PDF attachment, or (b) split into two shorter emails on consecutive days. <span class="q-sub">Either way, this cannot go live until the email is complete and reviewed.</span></span></li>
+      <li><span class="q-icon">❓</span><span class="q-text"><strong>Bibbidi Bobbidi Boutique — add to 91+ workflow?</strong><br>The Close-In workflow has a specific task for booking Bibbidi Bobbidi and character dining. Should this be added to the 91+ workflow as well for clients who want it? <span class="q-sub">It's a revenue opportunity that currently only exists in the close-in version.</span></span></li>
+      <li><span class="q-icon">❓</span><span class="q-text"><strong>WDW-04A — could this become two emails?</strong><br>One option is to split into: (1) an automated email that says dining opens in ~60 days and introduces the concept, followed by (2) a manual email sent when you know the client's specific check-in date with the exact booking date. <span class="q-sub">This would let you automate the intro while keeping the date-specific detail manual.</span></span></li>
+    </ul>
+  </div>
+</div>
+
+<!-- ─────────────────────────────────────────
+     SECTION 8 — DISNEY CRUISE LINE
+───────────────────────────────────────── -->
+<div class="section" id="dcl">
+  <div class="section-header" onclick="toggle(this)">
+    <div class="section-icon" style="background:#E8F4FA;">🚢</div>
+    <h2>Disney Cruise Line Workflow</h2>
+    <span class="badge badge-action">Action Required</span>
+    <span class="chevron">▼</span>
+  </div>
+  <div class="section-body">
+    <p class="lead">The DCL Core Planning workflow contains all the right emails — but every single automation is currently <strong>Inactive with no trigger date set</strong>. The first priority is setting trigger dates and deciding which workflow is the master going forward.</p>
+
+    <div class="alert alert-tip">
+      <span class="alert-icon">💡</span>
+      <div><strong>Tern Library tip:</strong> When you add a Disney Cruise from the Tern library, it will automatically pull in some dining options for that ship. For <strong>adult dining</strong>, the recommendation is to create <strong>Info Blocks</strong> in Tern — one per ship (e.g., "Adult Dining — Disney Wish," "Adult Dining — Disney Fantasy"). Your DCL workflow email can then point clients directly to their ship's info block. This keeps everything in Tern, reinforces the platform as their one-stop resource, and eliminates the need for ship-specific email variations that the platform can't currently trigger automatically.</div>
+    </div>
+
+    <hr class="divider">
+    <h3>🚢 DCL Core Planning Workflow — Email Sequence</h3>
+    <p style="font-size:.83rem;color:var(--gray);margin-bottom:.85rem;">All automations are currently Inactive. Set trigger dates and activate in priority order below.</p>
+
+    <table class="tag-table">
+      <thead>
+        <tr><th>Code</th><th>Email</th><th>Suggested Trigger</th><th>Type</th><th>Priority / Notes</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>DCL CC-01</td><td>Welcome to Your Disney Cruise Line Planning Series</td><td>Immediately after booking</td><td><span class="tag-pill">Manual</span></td><td>🔴 HIGH — No welcome task exists in original workflow. Set to fire at booking. Update trip link and confirm reservation details are in Tern itinerary (if so, remove manual customization from email).</td></tr>
+        <tr><td>DCL CC-02</td><td>What's Included on Your Disney Cruise Line Vacation</td><td>1–3 days after booking</td><td><span class="tag-pill">Auto</span></td><td>🟠 HIGH — Educational email, no trigger set. Add trigger early in the sequence.</td></tr>
+        <tr><td>DCL CC-03</td><td>Travel Insurance Options for Your Upcoming Disney Cruise!</td><td>At booking / early</td><td><span class="tag-pill">Auto or Manual</span></td><td>🟠 HIGH — Confirm: auto or deactivated? Insurance email has been updated with new language comparing Disney plan vs. third-party side by side.</td></tr>
+        <tr><td>DCL CC-05</td><td>Why a Pre-Night Stay Is Always a Good Idea</td><td>Early — at or near booking</td><td><span class="tag-pill">Auto</span></td><td>🟠 HIGH — Revenue opportunity. Should fire while hotels can still be added to the trip.</td></tr>
+        <tr><td>DCL CC-10</td><td>Adult Dining Options on Disney Cruise Line Ships</td><td>75–90 days before trip</td><td><span class="tag-pill">Auto</span></td><td>🟠 HIGH — Adult dining booking opens ~75–90 days out. Point clients to their ship's <strong>Info Block in Tern</strong> rather than ship-specific email variations. Set trigger and activate.</td></tr>
+        <tr><td>DCL CC-08</td><td>Explore and Book Port Adventures</td><td>75–90 days before trip</td><td><span class="tag-pill">Auto</span></td><td>🟠 HIGH — Port adventure booking window. Set trigger ~75 days and activate.</td></tr>
+        <tr><td>DCL CC-09</td><td>Spa & Relaxation Onboard Your Disney Cruise</td><td>75 days before trip</td><td><span class="tag-pill">Auto</span></td><td>🟡 MEDIUM — Spa bookings open ~75 days out. GAP in original workflow — add and activate.</td></tr>
+        <tr><td>DCL CC-04</td><td>Traveling to Your Disney Cruise & Flight Tips</td><td>30 days before trip</td><td><span class="tag-pill">Auto</span></td><td>🟡 MEDIUM — Matches original 30-day pre-vacation checklist timing. Once activated, deactivate the original checklist automation to avoid duplication.</td></tr>
+        <tr><td>DCL CC-06</td><td>Using the Disney Cruise Line Navigator App</td><td>30 days before trip</td><td><span class="tag-pill">Auto</span></td><td>🟡 MEDIUM — App setup before sailing. Good at 30 days. Review email before activating.</td></tr>
+        <tr><td>DCL CC-07</td><td>Disney Cruise Transfers to Your Cruise Terminal & Port</td><td>7 days before trip</td><td><span class="tag-pill">Auto</span></td><td>🟡 MEDIUM — Original workflow has transfer tasks at 4–7 days that cover this. Set Core trigger to 7 days and activate.</td></tr>
+        <tr><td>DCL CC-07A–E</td><td>Individual Ports (by port) — INCOMPLETE</td><td>Port-specific</td><td><span class="tag-pill">Manual</span></td><td>🟢 LOWER — Platform cannot trigger by port type. Original workflow task at 60 days is best current coverage. Complete email and add as individual manual automations as a workaround.</td></tr>
+        <tr><td>DCL CC-10a–g</td><td>Adult Dining by Ship — INCOMPLETE</td><td>Ship-specific</td><td><span class="tag-pill">Info Block</span></td><td>🟢 LOWER — Platform cannot trigger by ship type. <strong>Solution: Create Tern Info Blocks per ship instead of separate emails.</strong> DCL CC-10 email points clients to their ship's info block. Eliminates the need for this email series entirely.</td></tr>
+      </tbody>
+    </table>
+
+    <hr class="divider">
+    <h3>📋 Original DCL Booked Workflow — Key Tasks to Retain</h3>
+    <p style="font-size:.83rem;color:var(--gray);margin-bottom:.85rem;">These tasks from the original workflow have no equivalent in the Core workflow and should either be kept or added to Core.</p>
+
+    <table class="tag-table">
+      <thead>
+        <tr><th>Task</th><th>Trigger</th><th>Action</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Disney Cruise Booking Timeline</td><td>150 days before trip</td><td>Keep in Core — important orientation task missing from Core workflow</td></tr>
+        <tr><td>Check and Send Final Payment Reminder</td><td>120 days before trip</td><td>🔴 Critical — no payment reminder in Core. Add this.</td></tr>
+        <tr><td>Booked: 90 Days Before Cruise</td><td>90 days before trip</td><td>Aligns with port adventure / dining booking window automations</td></tr>
+        <tr><td>60 Days Out — Port Info</td><td>60 days before trip</td><td>Best current coverage for port info until DCL CC-07A–E is complete</td></tr>
+        <tr><td>Book Dining and Bibbidi Bobbidi</td><td>67 days before trip</td><td>Character dining / Bibbidi Bobbidi task — not in Core</td></tr>
+        <tr><td>Disney Royal Gathering & Online Check-In</td><td>37 days before trip</td><td>Should become an automated email — confirm and add to Core</td></tr>
+        <tr><td>Disney Cruise Packing List & Phone Calls</td><td>50 days before trip</td><td>Packing list task — add to Core or send packing list PDF</td></tr>
+        <tr><td>3rd Party Hotel/Resort Confirmation</td><td>7 days before trip</td><td>For clients with pre/post hotel stays — keep</td></tr>
+        <tr><td>Transfer Confirmation to Resort/Cruise</td><td>4 days before trip</td><td>Keep — important logistical task</td></tr>
+        <tr><td>Traveled: Post Trip Follow-Up</td><td>0 days after trip end</td><td>🔴 Missing from Core — add Welcome Home + Survey automation</td></tr>
+      </tbody>
+    </table>
+
+    <hr class="divider">
+    <h3>❓ Questions for Christine — DCL</h3>
+    <ul class="question-list">
+      <li><span class="q-icon">❓</span><span class="q-text"><strong>DCL CC-03 Travel Insurance</strong> — do you want this to send automatically, or should it remain inactive so you can activate it trip by trip? <span class="q-sub">The email has been updated with the new language comparing Disney's plan vs. third-party side by side.</span></span></li>
+      <li><span class="q-icon">❓</span><span class="q-text"><strong>Adult Dining Info Blocks</strong> — are you open to creating a Tern Info Block per ship (Disney Wish, Disney Fantasy, etc.) so the adult dining email can point clients there instead of requiring ship-specific email variations? <span class="q-sub">This is the cleanest solution given platform limitations and keeps everything centralized in Tern.</span></span></li>
+      <li><span class="q-icon">❓</span><span class="q-text"><strong>Payment reminders</strong> — do you want payment reminder automations in each trip-specific workflow, or managed centrally in the Payments workflow? <span class="q-sub">Recommend centralized Payments workflow to avoid duplication.</span></span></li>
+      <li><span class="q-icon">❓</span><span class="q-text"><strong>Passport/document reminder</strong> — DCL clients travel internationally. Should a passport expiry reminder be added to the DCL workflow specifically? <span class="q-sub">This is not currently in the Core workflow.</span></span></li>
+    </ul>
+  </div>
+</div>
+
 <footer>
-  Adventure the World Travels · Tern Setup Guide · Built for Christine Scheeler<br>
+  Adventure the World Travels · Tern Outline · Built for Christine Scheeler<br>
   <span style="color:#bbb;font-size:.72rem;">Questions? Reach out before making changes to the master workflow library.</span>
 </footer>
 
